@@ -1,0 +1,23 @@
+{
+  "name": "lede-hub-demo",
+  "version": "1.0.0",
+  "authors": [
+    "hitech95 <nicveronese@gmail.com>"
+  ],
+  "description": "Basic template for a possible smart hub of LEDE.",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://lede.kytech.it",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "font-awesome": "~4.6.3"
+  }
+}

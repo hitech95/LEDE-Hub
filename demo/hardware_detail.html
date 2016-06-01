@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lede Hub - Netgear DGN3500/DGN3500B</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="./assets/lede/css/styles.css"/>
+</head>
+<body>
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse"
+            data-target="#collapsingNavbar">
+        ☰
+    </button>
+    <a class="navbar-brand" href="#">LEDE Hub</a>
+    <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./index.html">Home <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button">Hardware</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item active" href="hardware_list.html">Table of hardware</a>
+                    <a class="dropdown-item" href="#">Platforms</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Bugs</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid" id="main">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="nav-item"><a class="nav-link" href="#">Overview</a>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Hardware Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Supported Versions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Bug Tracker</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="">Installation</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Configuration</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Hardware Details</a>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Hardware Table</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Serial</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">JTAG</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Photos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Mod</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Bug Tracker</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="">Debrick</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Logs</a></li>
+            </ul>
+        </div>
+        <!--/col-->
+
+        <div class="col-md-9 col-lg-10 main">
+
+            <!--toggle sidebar button-->
+            <p class="hidden-md-up">
+                <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i
+                        class="fa fa-chevron-left"></i> Menu
+                </button>
+            </p>
+
+            <h1 class="display-3 hidden-xs-down">
+                Netgear DGN3500 - DGN3500B
+            </h1>
+            <p class="lead">The Netgear DGN3500 is an ADSL2+ gateway with wireless acccess point integrated, gigabit
+                Ethernet switch and USB 2.0 port.</p>
+
+            <a id="overview"></a>
+            <hr>
+            <p class="lead">
+                Nulla convallis viverra eros, eu eleifend nulla ullamcorper vitae. Vivamus sed tristique nunc, faucibus accumsan mi. Quisque commodo pretium pellentesque. Praesent malesuada interdum hendrerit. Phasellus vel magna a massa consequat luctus. Nullam non enim sit amet dolor vehicula dictum. Vivamus maximus dui vel nulla tristique, non sodales enim sollicitudin. Nullam molestie scelerisque nibh, lacinia sodales ex volutpat ut. Proin viverra leo vel tincidunt faucibus.
+            </p>
+
+            <hr>
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+
+                    <div class="card card-inverse bg-inverse" style="border-color: #333;">
+                        <div class="card-block">
+                            <h3 class="card-title">Hardware Highlights
+                                <span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </h3>
+                            <p class="card-text">
+                            <ul>
+                                <li><span class="font-weight-bold">CPU:</span>Lantiq XWAY ARX168@333MHz</li>
+                                <li><span class="font-weight-bold">RAM:</span>64MiB</li>
+                                <li><span class="font-weight-bold">ROM:</span>16MiB</li>
+                                <li><span class="font-weight-bold">Switch:</span>Realtek 4 x 1GBE</li>
+                                <li><span class="font-weight-bold">USB:</span>1 x 2.0 HOST</li>
+                                <li><span class="font-weight-bold">ADSL:</span>YES</li>
+                            </ul>
+                            </p>
+                            <a href="#" class="btn btn-secondary-outline">More details</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-9 col-md-8">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#supportedw" role="tab">Supported
+                                Version</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#downloads" role="tab">Downloads</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#busg" role="tab">Bugs</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="supportedw" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Revision</th>
+                                        <th>Date</th>
+                                        <th>Version</th>
+                                        <th>Status</th>
+                                        <th>Note</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>DGN3500</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-success"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>ADSL works, new SPI driver make the device faster</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500B</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-warning"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>ADSL don't works</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="downloads" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Revision</th>
+                                        <th>Release</th>
+                                        <th>Date</th>
+                                        <th>Version</th>
+                                        <th>Status</th>
+                                        <th>Note</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>DGN3500</td>
+                                        <td>r500</td>
+                                        <td>2012-11</td>
+                                        <td>5.00</td>
+                                        <td><span class="text-warning"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>USB not working</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500</td>
+                                        <td>r1850</td>
+                                        <td>2013-03</td>
+                                        <td>9.05</td>
+                                        <td><span class="text-success"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500B</td>
+                                        <td>r540</td>
+                                        <td>2012-11</td>
+                                        <td>5.00</td>
+                                        <td><span class="text-danger"><i class="fa fa-circle"
+                                                                         aria-hidden="true"></i></span></td>
+                                        <td>USB not working, ADSL not working</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500B</td>
+                                        <td>r1940</td>
+                                        <td>2013-03</td>
+                                        <td>9.05</td>
+                                        <td><span class="text-warning"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>ADSL don't works</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="busg" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Revision</th>
+                                        <th>Date</th>
+                                        <th>Version</th>
+                                        <th>Status</th>
+                                        <th>Note</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>DGN3500</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-success"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>ADSL not initialize</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500/B</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-success"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>USB not initialize</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500/B</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-warning"><i class="fa fa-circle"
+                                                                          aria-hidden="true"></i></span></td>
+                                        <td>Missing mapping of some leds (I have found it, must add to DTS on
+                                            mainstream, that is <a href="https://github.com/hitech95/OpenWrt-Enviroment/blob/master/profiles/dgn3500/trunk-openwrt.patch#L39" >real</a> ... by hitech95)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DGN3500B</td>
+                                        <td>2012-11</td>
+                                        <td>15.05</td>
+                                        <td><span class="text-danger"><i class="fa fa-circle"
+                                                                         aria-hidden="true"></i></span></td>
+                                        <td>ADSL don't works</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+    </div>
+</div>
+
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js,"></script>
+
+<script src="./assets/lede/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "foundation-sites-template",
+  "version": "1.0.0",
+  "author": "hitech95 <nicveronese@gmail.com>",
+  "description": "Basic template for a possible smart hub of LEDE.",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "private": true
+}
