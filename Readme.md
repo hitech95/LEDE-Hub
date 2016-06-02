@@ -1,7 +1,7 @@
 # LEDE Hub
-A quick way to search and browse all the available platforms.
+A quick way to search and browse all the available platforms and our awesome staff!
 
-### Features:
+## Features:
   - Browse the supported hardware
   - Direct link for bugs (bugtracker)
   - Cronjob to import the devices to keep in synk the hub with the build server
@@ -10,31 +10,34 @@ A quick way to search and browse all the available platforms.
   - Browse main releases
   - Track changes on the platform
  
-### Todo's
+## Todo's
   - Design the platform users permissions
   - Design the DB structure
-  - Design a simple way to document the hardware maybe a Markdown or a WYSIWYG editor
+   ![DB Structure](https://raw.githubusercontent.com/hitech95/LEDE-Hub/master/DB%20Layout.png "DB Structure") 
+  - Design a simple way to document the hardware maybe Markdown or WYSIWYG or asciidoctor. And then parese it on client side.
   - Define a theme for the UI
+  - Define a way to calculate the status using reports
   - Make all the code :)
-  - Something else?
+  - Something else? Oh, yes: compile LEDE!
 
-### Random stuff
+ ### Page structure:
+   - `/` index
+   - `/login`
+   - `/logout`
+   - `/device` device list
+   - `/device/[manufacturer]/[shortname]` Show the device page
+   - `/staff` Staff list
+   - `/staff/[staff-mail]` Staff detail page
+   - `/report/` Reports info. List of last # reports
+   - `/report/[id]` Report detail page
+   - `/report/[release]/` Report list for the specified release
+   - `/report/hardware/[shortname]` Report list for the hardware
+   - `/report/hardware/[shortname]/[release]` Report list list for the hardware and the release
+   - `/release` Releases list
+   - `/release/[version]` Details of a release like # of commit from last release
+
+## Random stuff
  - Possible CSV input format: "lantiq|xrx200|TD8970|TP-Link TD-8970"
- - Page structure:
-   - / (index)
-   - /login
-   - /logout
-   - /device (device list)
-   - /device/[manufacturer]/[shortname] (Device page)
-   - /staff (staff list)
-   - /staff/[staff-mail] (Staff detail page)
-   - /report/ (Reports info. List of last # reports)
-   - /report/[id] (Report detail page)
-   - /report/[release]/ (Report list for the specified release)
-   - /report/hardware/[shortname] (Report list for the hardware)
-   - /report/hardware/[shortname]/[release] (Report list list for the hardware and the release)
-   - /release (release list)
-   - /release/[version]
 
 ### Contribute
   - Send your PR
