@@ -1,4 +1,4 @@
-body {
+html {
   margin-top:54px;
 }
 
@@ -11,12 +11,14 @@ body.modal-open {
     padding-right:0 !important;
 }
 
-#main{
+.main{
     padding-top: 45px;
 }
 
 #sidebar {
    padding-left:0;
+    background-color: #eee;
+    border: 1px solid #ddd;
 }
 
 .main-head{
