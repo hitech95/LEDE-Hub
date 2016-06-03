@@ -13,7 +13,7 @@
 
 //Index
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
 
 //Login
@@ -21,7 +21,7 @@ Route::auth();
 
 //Platform
 Route::group(['prefix' => 'platform'], function () {
-    Route::get('/', 'DeviceController@index');
+    Route::get('/', 'DeviceController@indexPlatform');
     Route::get('/{manufacturer}/{shortname}', 'DeviceController@details')
         ->where('manufacturer', '[0-9a-z\-]+')
         ->where('shortname', '[0-9a-z\-]+');
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'platform'], function () {
 
 //Device
 Route::group(['prefix' => 'device'], function () {
-    Route::get('/', 'DeviceController@index');
+    Route::get('/', 'DeviceController@indexDevice');
     Route::get('/{manufacturer}/{shortname}', 'DeviceController@details')
         ->where('manufacturer', '[0-9a-z\-]+')
         ->where('shortname', '[0-9a-z\-]+');
@@ -38,7 +38,7 @@ Route::group(['prefix' => 'device'], function () {
 //Staff
 Route::group(['prefix' => 'staff'], function () {
     Route::get('/', 'StaffController@index');
-    Route::get('/{shortname}', 'StaffController@details');
+    Route::get('/{nickname}', 'StaffController@details');
 });
 
 //Report
