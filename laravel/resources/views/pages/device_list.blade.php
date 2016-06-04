@@ -28,9 +28,15 @@
                                 {{ $device->brand->name }}
                             </td>
                             <td>
-                                <a href="{{ url('/platform/'. $device->platform->brand->slug .'/' . $device->platform->slug)}}">{{ $device->platform->name }}</a>
+                                {{ $device->platform->brand->name }} - <a
+                                        href="{{ url('/platform/'. $device->platform->brand->slug .'/' . $device->platform->slug)}}">{{ $device->platform->name }}</a>
                             </td>
                             <td></td>
+                            <td>
+                                @foreach ($device->tags as $tag)
+                                    <span class="label label-default">{{ $tag->name }}</span>
+                                @endforeach
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

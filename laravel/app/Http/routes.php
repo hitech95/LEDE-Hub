@@ -12,25 +12,23 @@
 */
 
 //Index
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', 'HomeController@index');
 
 //Login
 Route::auth();
 
 //Platform
 Route::group(['prefix' => 'platform'], function () {
-    Route::get('/', 'DeviceController@indexPlatform');
-    Route::get('/{manufacturer}/{shortname}', 'DeviceController@details')
+    Route::get('/', 'HardwareController@indexPlatform');
+    Route::get('/{manufacturer}/{shortname}', 'HardwareController@details')
         ->where('manufacturer', '[0-9a-z\-]+')
         ->where('shortname', '[0-9a-z\-]+');
 });
 
 //Device
 Route::group(['prefix' => 'device'], function () {
-    Route::get('/', 'DeviceController@indexDevice');
-    Route::get('/{manufacturer}/{shortname}', 'DeviceController@details')
+    Route::get('/', 'HardwareController@indexDevice');
+    Route::get('/{manufacturer}/{shortname}', 'HardwareController@details')
         ->where('manufacturer', '[0-9a-z\-]+')
         ->where('shortname', '[0-9a-z\-]+');
 });
