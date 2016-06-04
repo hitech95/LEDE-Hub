@@ -6,14 +6,25 @@ use App\Staff;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 
 class StaffController extends Controller
 {
     public function index()
     {
-        $staff = Staff::orderBy('nickname', 'asc')->get();
+        $expire = Config::get('hub.cache_expire');
+        $staff = null;
 
-        //return $staff;
+        if (!Cache::has('staff_list')) {
+            Log::info('Cache:: Rebuild staff_list cache');
+
+            $staff = Staff::orderBy('nickname', 'asc')->get();
+            Cache::add('staff_list', $staff, $expire);
+        } else {
+            $staff = Cache::get('staff_list');
+        }
 
         return view('pages.staff_list', ['records' => $staff]);
     }
