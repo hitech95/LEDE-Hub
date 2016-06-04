@@ -22,11 +22,11 @@ class Staff extends Model
             'nickname' => 'bail|required|unique:staff,nickname',
         ]);
 
-        $release = new Staff;
+        $staff = new Staff;
 
-        $release->full_name = $request->name;
-        $release->nickname = $request->nickname;
+        $staff->full_name = $request->name;
+        $staff->nickname = $request->nickname;
 
-        $release->save();
+        $staff->save();
     }
 }
