@@ -15,6 +15,11 @@ class Hardware extends Model
 
     public function platform()
     {
-        return $this->belongsTo('App\Hardware', 'platform_id');
+        return $this->belongsTo('App\Hardware', 'platform_id')->with('brand');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 }
