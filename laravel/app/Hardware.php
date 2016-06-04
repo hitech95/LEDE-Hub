@@ -22,4 +22,9 @@ class Hardware extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function staff()
+    {
+        return $this->belongsToMany('App\Staff', 'staff_role_hardware');
+    }
 }

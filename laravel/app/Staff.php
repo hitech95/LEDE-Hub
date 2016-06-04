@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Staff extends Model
 {
@@ -15,18 +16,18 @@ class Staff extends Model
         'full_name', 'nickname'
     ];
 
-    public function store(Request $request)
+    public function roles()
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'nickname' => 'bail|required|unique:staff,nickname',
-        ]);
+        return $this->belongsToMany('App\Role', 'staff_role');
+    }
 
-        $staff = new Staff;
+    public function hardwareHardware()
+    {
+        return $this->hasMany('App\StaffRoleHardware')->with('hardware');
+    }
 
-        $staff->full_name = $request->name;
-        $staff->nickname = $request->nickname;
-
-        $staff->save();
+    public function hardwareRoles()
+    {
+        return $this->hasMany('App\StaffRoleHardware')->with('roles');
     }
 }
