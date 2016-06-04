@@ -11,11 +11,11 @@
                 <table class="table table-striped table-hover">
                     <thead class="thead-inverse">
                     <tr>
-                        <th>Nickname</th>
-                        <th>Name</th>
-                        <th>Roles</th>
-                        <th>Platforms</th>
-                        <th>Boards</th>
+                        <th class="col-md-1 pull-md-none">Nickname</th>
+                        <th class="col-md-2 pull-md-none">Name</th>
+                        <th class="col-md-3 pull-md-none">Roles</th>
+                        <th class="col-md-3 pull-md-none">Platforms</th>
+                        <th class="col-md-3 pull-md-none">Boards</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,8 +23,25 @@
                         <tr>
                             <td><a href="{{url('/staff/' . $staff->nickname )}}">{{ $staff->nickname }}</a></td>
                             <td>{{ $staff->full_name }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                @foreach ($staff->roles as $role)
+                                    <span class="label label-default">{{ $role->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($staff->hardware as $hardware)
+                                    @if($hardware->platform_id)
+                                        <small><a href="{{ url('/device/' . $hardware->brand_slug . '/' . $hardware->model_slug) }}">{{ $hardware->model }}</a></small>
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($staff->hardware as $hardware)
+                                    @if(!$hardware->platform_id)
+                                        <small><a href="{{ url('/platform/' . $hardware->brand_slug . '/' . $hardware->model_slug) }}">{{ $hardware->model }}</a></small>
+                                    @endif
+                                @endforeach
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
