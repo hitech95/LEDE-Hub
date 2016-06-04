@@ -30,7 +30,7 @@
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <h6 class="text-uppercase">Developers</h6>
-                        <h1 class="display-1">134</h1>
+                        <h1 class="display-1">{{ $developer }}</h1>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                             <i class="fa fa-bug fa-5x"></i>
                         </div>
                         <h6 class="text-uppercase">Unsupported Hardware</h6>
-                        <h1 class="display-1">87</h1>
+                        <h1 class="display-1">{{ $unsupported }}</h1>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <h6 class="text-uppercase">Working hardware</h6>
-                        <h1 class="display-1">125</h1>
+                        <h1 class="display-1">{{ $supported }}</h1>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                             <i class="fa fa-wrench fa-5x"></i>
                         </div>
                         <h6 class="text-uppercase">Supported hardware</h6>
-                        <h1 class="display-1">36</h1>
+                        <h1 class="display-1">{{ $hardware }}</h1>
                     </div>
                 </div>
             </div>
