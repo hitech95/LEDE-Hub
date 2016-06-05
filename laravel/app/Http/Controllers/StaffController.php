@@ -71,7 +71,7 @@ class StaffController extends Controller
 
             foreach ($staff as $member) {
                 $member->roles = array();
-                //Attach the hardware to the user
+                //Attach the roles to the user
                 foreach ($roles as $role) {
                     if ($role->staff_id == $member->id) {
                         array_push($member->roles, $role);
@@ -88,17 +88,16 @@ class StaffController extends Controller
         //TODO - Remove hardcoded to configuration
         $limit = 5;
 
-        return view('pages.staff_list', [
+        return view('staff.index', [
             'records' => $staff,
             'limit' => $limit,
         ]);
     }
 
-    public
-    function details($nickname)
+    public function details($nickname)
     {
         $staff = Staff::where('nickname', $nickname)->firstOrFail();
 
-        return view('pages.staff_detail', ['staff' => $staff]);
+        return view('staff.detail', ['staff' => $staff]);
     }
 }

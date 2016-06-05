@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Hardware;
 
 use App\Http\Requests;
@@ -28,11 +29,11 @@ class HardwareController extends Controller
                 ->get();
 
             Cache::add('platforms_list', $platforms, $expire);
-        }else{
+        } else {
             $platforms = Cache::get('platforms_list');
         }
 
-        return view('pages.platform_list', ['records' => $platforms]);
+        return view('platforms.index', ['records' => $platforms]);
     }
 
     /*
@@ -58,7 +59,7 @@ class HardwareController extends Controller
             $devices = Cache::get('devices_list');
         }
 
-        return view('pages.device_list', ['records' => $devices]);
+        return view('devices.index', ['records' => $devices]);
     }
 
     /*
@@ -66,7 +67,18 @@ class HardwareController extends Controller
      */
     public function details($manufacturerSlug, $deviceSlug)
     {
+        $brand = Brand::where('slug', '=', $manufacturerSlug)->firstOrFail();
+        $hardware = Hardware::where('hardware.slug', '=', $deviceSlug)
+            ->where('manufacturer_id', '=', $brand->id)
+            ->with('brand')
+            ->firstOrFail();
+
         //TODO - Make the view and query the data
-        return 'Device Details ' . $manufacturerSlug . ' ' . $deviceSlug;
+
+        if(isset($hardware->platform_id)){
+            return view('devices.detail', compact($hardware));
+        }else{
+            return view('platform.detail', compact($hardware));
+        }
     }
 }

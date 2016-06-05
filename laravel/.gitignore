@@ -4,4 +4,5 @@
 /public/assets/
 /public/storage
 Homestead.json
+_ide_helper.php
 .env

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Release;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Cache;
@@ -20,13 +19,13 @@ class ReleaseController extends Controller
         if (!Cache::has('releases_list')) {
             Log::info('Cache:: Rebuild releases_list cache');
 
-            $releases = Release::orderBy('revision', 'desc')->get();
+            $releases = Release::latest('revision')->get();
 
             Cache::add('releases_list', $releases, $expire);
         }else{
             $releases = Cache::get('releases_list');
         }
 
-        return view('pages.release', ['records' => $releases]);
+        return view('pages.releases', ['records' => $releases]);
     }
 }
