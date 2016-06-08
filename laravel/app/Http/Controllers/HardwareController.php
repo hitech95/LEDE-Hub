@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 
-class HardwareController extends Controller
-{
+class HardwareController extends Controller {
+
     /*
      * Return a list of platforms with the associate view
      */
@@ -20,16 +20,19 @@ class HardwareController extends Controller
         $expire = Config::get('hub.cache_expire');
         $platforms = null;
 
-        if (!Cache::has('platforms_list')) {
+        if (!Cache::has('platforms_list'))
+        {
             Log::info('Cache:: Rebuild platforms_list cache');
 
-            $platforms = Hardware::whereNull('platform_id')
-                ->where('hidden', false)
+            $platforms = Hardware::platforms()
+                ->visible()
                 ->with('brand')
+                ->with('tags')
                 ->get();
 
             Cache::add('platforms_list', $platforms, $expire);
-        } else {
+        } else
+        {
             $platforms = Cache::get('platforms_list');
         }
 
@@ -44,18 +47,20 @@ class HardwareController extends Controller
         $expire = Config::get('hub.cache_expire');
         $devices = null;
 
-        if (!Cache::has('devices_list')) {
+        if (!Cache::has('devices_list'))
+        {
             Log::info('Cache:: Rebuild devices_list cache');
 
-            $devices = Hardware::where('hidden', false)
-                ->whereNotNull('platform_id')
+            $devices = Hardware::devices()
+                ->visible()
                 ->with('brand')
                 ->with('platform')
                 ->with('tags')
                 ->get();
 
             Cache::add('devices_list', $devices, $expire);
-        } else {
+        } else
+        {
             $devices = Cache::get('devices_list');
         }
 
@@ -65,20 +70,22 @@ class HardwareController extends Controller
     /*
      * Return a detail page for the hardware
      */
-    public function details($manufacturerSlug, $deviceSlug)
+    public function show($manufacturerSlug, $deviceSlug)
     {
         $brand = Brand::where('slug', '=', $manufacturerSlug)->firstOrFail();
         $hardware = Hardware::where('hardware.slug', '=', $deviceSlug)
-            ->where('manufacturer_id', '=', $brand->id)
+            ->where('brand_id', '=', $brand->id)
             ->with('tags')
             ->firstOrFail();
 
         //TODO - Make the view and query the data
 
-        if(isset($hardware->platform_id)){
+        if (isset($hardware->platform_id))
+        {
             return view('devices.detail', compact('hardware', 'brand'));
-        }else{
-            return view('platform.detail', compact('hardware', 'brand'));
+        } else
+        {
+            return view('platforms.detail', compact('hardware', 'brand'));
         }
     }
 }

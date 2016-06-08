@@ -37,11 +37,10 @@ class StaffController extends Controller
             $hardware = DB::table('hardware')
                 ->join(DB::raw('(' . $hardwareIDs->toSql() . ') as hub_staff_role_hardware'), 'hardware.id', '=', 'staff_role_hardware.hardware_id')
                 ->mergeBindings($hardwareIDs)
-                ->join('brands', 'brands.id', '=', 'hardware.manufacturer_id')
+                ->join('brands', 'brands.id', '=', 'hardware.brand_id')
                 ->select('hardware.name as model', 'hardware.slug as model_slug', 'hardware.platform_id as platform_id', 'brands.name as brand', 'brands.slug as brand_slug', 'staff_id')
                 ->where('hidden', false)
                 ->get();
-
 
             //Roles query
             $rolesIDs = DB::table('staff_role_hardware')
@@ -79,7 +78,6 @@ class StaffController extends Controller
                 }
             }
 
-
             Cache::add('staff_list', $staff, $expire);
         } else {
             $staff = Cache::get('staff_list');
@@ -94,7 +92,7 @@ class StaffController extends Controller
         ]);
     }
 
-    public function details($nickname)
+    public function show($nickname)
     {
         $staff = Staff::where('nickname', $nickname)->firstOrFail();
 
