@@ -17,50 +17,52 @@ Route::get('/', 'HomeController@index');
 //Login
 Route::auth();
 
+//Admin
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', 'Admin\AdminController@index');
+    Route::get('/dashboard', 'Admin\AdminController@stats');
+    Route::get('/stats', 'Admin\AdminController@stats');
+
+    Route::resource('users', 'Admin\UserController');
+    Route::resource('hardware', 'Admin\AHardwareController');
+    Route::resource('tags', 'Admin\TagController');
+});
+
 //Platform
 Route::group(['prefix' => 'platform'], function () {
     Route::get('/', 'HardwareController@indexPlatform');
-    Route::get('/{manufacturer}/{shortname}', 'HardwareController@details')
-        ->where('manufacturer', '[0-9a-z\-]+')
-        ->where('shortname', '[0-9a-z\-]+');
+    Route::get('/{brand}/{name}', 'HardwareController@show')
+        ->where('brand', '[0-9a-z\-]+')
+        ->where('name', '[0-9a-z\-]+');
 });
 
 //Device
 Route::group(['prefix' => 'device'], function () {
     Route::get('/', 'HardwareController@indexDevice');
-    Route::get('/{manufacturer}/{shortname}', 'HardwareController@details')
+    Route::get('/{brand}/{name}', 'HardwareController@show')
         ->where('manufacturer', '[0-9a-z\-]+')
-        ->where('shortname', '[0-9a-z\-]+');
+        ->where('name', '[0-9a-z\-]+');
 });
 
 //Staff
 Route::group(['prefix' => 'staff'], function () {
     Route::get('/', 'StaffController@index');
-    Route::get('/{nickname}', 'StaffController@details');
+    Route::get('/{nickname}', 'StaffController@show')
+        ->where('nickname', '[0-9a-z\-]+');
 });
 
-//Report
-Route::group(['prefix' => 'report'], function () {
+//TODO - Report
+/*Route::group(['prefix' => 'report'], function () {
     Route::get('/', 'ReportController@index');
-    Route::get('/{id}', 'ReportController@details')
+    Route::get('/{id}', 'ReportController@show')
         ->where('id', '[0-9]+');
-
-    Route::get('/{release}', 'ReportController@release');
-
-    Route::group(['prefix' => 'report'], function () {
-        Route::get('/', 'ReportController@index');
-        Route::get('/{id}', 'ReportController@details')
-            ->where('id', '[0-9]+');
-    });
-});
+});*/
 
 //Release
 Route::group(['prefix' => 'release'], function () {
     Route::get('/', 'ReleaseController@index');
-    //Route::get('/{version}', 'ReleaseController@details')
-    //->where('version', 'r[0-9]+');
+    Route::get('/create', 'ReleaseController@create');
+    Route::get('/{version}', 'ReleaseController@show')
+    ->where('version', 'r[0-9]+');
+    Route::post('/', 'ReleaseController@store');
 });
-
-
-
-//Route::get('/home', 'HomeController@index');
