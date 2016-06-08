@@ -19,6 +19,10 @@
   ],
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.2",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "jquery-slugify": "^1.2.3",
+    "metisMenu": "^2.5.2",
+    "selectize": "^0.12.1",
+    "Chart.js": "^2.1.4"
   }
 }

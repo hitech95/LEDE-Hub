@@ -6,6 +6,8 @@
 
     <title>LEDE Hub | @yield('title')</title>
 
-    <link rel="stylesheet" href="/assets/css/app.css"/>
+
+    <link rel="stylesheet" href="/assets/css/theme.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
