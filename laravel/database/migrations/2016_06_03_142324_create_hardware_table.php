@@ -18,7 +18,7 @@ class CreateHardwareTable extends Migration
             $table->integer('platform_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique()->index();
-            $table->integer('manufacturer_id')->unsigned()->nullable();
+            $table->integer('brand_id')->unsigned()->nullable();
             $table->string('description', 250);
             $table->text('content');
             $table->timestamps();
