@@ -31,7 +31,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">{{ Auth::user()->nickname }}</a>
                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                        <a class="dropdown-item" href="{{ url('/admin') }}"><i class="fa fa-btn fa-dashboard"></i> Dashboard</a>
+                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
                     </div>
                 </li>
             @endif
