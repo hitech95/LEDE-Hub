@@ -30,14 +30,14 @@
                             </td>
                             <td>
                                 @foreach ($staff->hardware as $hardware)
-                                    @if($hardware->platform_id)
+                                    @if(is_null($hardware->platform_id))
                                         <small><a href="{{ url('/device/' . $hardware->brand_slug . '/' . $hardware->model_slug) }}">{{ $hardware->model }}</a></small>
                                     @endif
                                 @endforeach
                             </td>
                             <td>
                                 @foreach ($staff->hardware as $hardware)
-                                    @if(!$hardware->platform_id)
+                                    @if(!is_null($hardware->platform_id))
                                         <small><a href="{{ url('/platform/' . $hardware->brand_slug . '/' . $hardware->model_slug) }}">{{ $hardware->model }}</a></small>
                                     @endif
                                 @endforeach
