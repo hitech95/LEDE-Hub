@@ -42,6 +42,10 @@ class TagController extends Controller
     {
         //TODO - Validate the input
         Tag::create($request->all());
+
+        // Clear the tag cache
+        Cache::forget('tags_list');
+
         return redirect()->action('Admin\TagController@index');
     }
 
