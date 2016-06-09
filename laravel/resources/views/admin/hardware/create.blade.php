@@ -19,28 +19,28 @@
 
     {!! Form::open(['url' => 'admin/hardware']) !!}
     <fieldset class="form-group row">
-        {!! Form::label('name', 'Name', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('name', 'Name:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::text('name', null, ['class' => 'form-control slugify-src', 'placeholder' => 'Name']) !!}
         </div>
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('slug', 'Slug', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('slug', 'Slug:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::text('slug', null, ['class' => 'form-control slugify', 'placeholder' => 'Slug']) !!}
         </div>
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('brand', 'Brand', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('brand', 'Brand:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('brand', $brands, null, ['class' => 'form-control selectized', 'placeholder' => 'Pick a brand...']) !!}
         </div>
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('tags[]', 'Tags', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('tags[]', 'Tags:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('tags[]', $tags, null, ['class' => 'form-control selectized', 'multiple' => 'multiple', 'placeholder' => 'Pick some tag...']) !!}
             <small class="text-muted">
@@ -49,10 +49,15 @@
         </div>
     </fieldset>
 
-    <!-- TODO - Add platforms -->
+    <fieldset class="form-group row">
+        {!! Form::label('platform', 'Platform:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('platform', $platforms, null, ['class' => 'form-control selectized', 'placeholder' => 'Pick a platform...']) !!}
+        </div>
+    </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('description', 'Description', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('description', 'Description:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::textarea('description', null, ['class' => 'form-control tinymce-lite', 'rows'=>'3', 'placeholder' => 'A brief description...']) !!}
             <small class="text-muted">
@@ -63,14 +68,23 @@
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('content', 'Body', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('content', 'Body:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::textarea('content', null, ['class' => 'form-control tinymce', 'placeholder' => 'Body']) !!}
         </div>
     </fieldset>
 
-    <!-- TODO - Add visible toggle -->
-
+    <fieldset class="form-group row">
+        {!! Form::label('hidden', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        <div class="col-sm-10 btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+                {!! Form::radio('hidden', 'false', true) !!} True
+            </label>
+            <label class="btn btn-primary">
+                {!! Form::radio('hidden', 'true') !!} False
+            </label>
+        </div>
+    </fieldset>
     <fieldset class="form-group row">
         <div class="col-sm-offset-2 col-sm-10">
             {!! Form::button('Add', ['class' => 'btn btn-success form-control', 'type' => 'submit']) !!}

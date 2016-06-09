@@ -18,7 +18,16 @@ class Hardware extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description', 'content'];
+    protected $fillable = ['name', 'slug', 'hidden', 'description', 'content'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'hidden' => 'boolean'
+    ];
 
     public function scopeDevices($query)
     {
@@ -33,6 +42,17 @@ class Hardware extends Model {
     public function scopeVisible($query)
     {
         $query->where('hidden', false);
+    }
+
+    /**
+     * Set the hardware visibility.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function setHiddenAttribute($value)
+    {
+        $this->attributes['hidden'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);;
     }
 
     public function brand()
