@@ -32,7 +32,8 @@ elixir(function (mix) {
 
     //Page scripts
     mix.scripts([
-        'admin.form.js'
+        'admin.form.js',
+        'admin.menu.js'
     ], 'public/assets/js/app.js');
 
     mix.copy('resources/assets/bower_components/font-awesome/fonts', 'public/assets/fonts');

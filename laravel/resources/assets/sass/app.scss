@@ -26,8 +26,12 @@ body.modal-open {
 
 #sidebar {
   padding-left:0;
-  background-color: #eee;
-  border: 1px solid #ddd;
+}
+
+#sidebar .nav {
+  padding-left:0;
+  background-color: #f9f9f9;
+  border: 1px solid #eceeef;
 }
 
 .main-head{
@@ -105,6 +109,10 @@ body.modal-open {
   }
 }
 
+/*
+ * Card stuff
+ * --------------------------------------------------
+ */
 .card {
   overflow:hidden;
 }
@@ -128,4 +136,107 @@ body.modal-open {
   -o-transform: rotate(-44deg);
   -ms-transform: rotate(-44deg);
   transform: rotate(-44deg);
+}
+
+/*
+ * Metis Menu
+ * --------------------------------------------------
+ */
+.metismenu {
+
+  .nav {
+    border: none !important;
+  }
+
+  .nav-item {
+    border-bottom: 1px solid #eceeef;
+  }
+
+  .nav .nav-link {
+    padding-left: 30px;
+  }
+
+  .nav-link .fa{
+    padding-right: 10px;
+  }
+
+  .last {
+    border-bottom: none;
+  }
+
+  .arrow {
+    float: right;
+    line-height: 1.42857;
+  }
+  .fa {
+    &.arrow:before {
+      content: "\f104";
+    }
+    &.plus-times:before {
+      content: "\f067";
+    }
+    &.plus-minus:before {
+      content: "\f067";
+    }
+  }
+  .plus-times {
+    float: right;
+  }
+  .plus-minus {
+    float: right;
+  }
+  .collapse {
+    display: none;
+    &.in {
+      display: block;
+    }
+  }
+  .collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    //Instead of the line below you could use @include transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+    transition-timing-function: ease;
+    //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+    transition-duration: .35s;
+    //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: height, visibility;
+  }
+  .glyphicon.arrow:before {
+    content: "\e079";
+  }
+  .active > a > {
+    .fa {
+      &.plus-times {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(45deg);
+      }
+      &.arrow:before {
+        content: "\f107";
+      }
+      &.plus-minus:before {
+        content: "\f068";
+      }
+    }
+    .glyphicon.arrow:before {
+      content: "\e114";
+    }
+    .ion.arrow:before {
+      content: "\f3d0";
+    }
+  }
+  .ion.arrow:before {
+    content: "\f3d2";
+  }
+}
+*[dir="rtl"] .metismenu {
+  .arrow {
+    float: left;
+  }
+  .plus-times {
+    float: left;
+  }
+  .plus-minus {
+    float: left;
+  }
 }
