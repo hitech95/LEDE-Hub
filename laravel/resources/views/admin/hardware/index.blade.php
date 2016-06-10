@@ -18,7 +18,8 @@
         <table class="table table-striped table-hover">
             <thead class="table-inverse">
             <tr>
-                <td class="col-md-3 pull-md-none">Name</td>
+                <td class="col-md-1 pull-md-none">Visible</td>
+                <td class="col-md-2 pull-md-none">Name</td>
                 <td class="col-md-1 pull-md-none">Slug</td>
                 <td class="col-md-1 pull-md-none">Brand</td>
                 <td class="col-md-2 pull-md-none">Platform</td>
@@ -29,6 +30,13 @@
             <tbody>
             @foreach($hardware as $hw)
                 <tr>
+                    <td>
+                        @if($hw->public)
+                            <span class="text-danger"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                        @else
+                            <span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                        @endif
+                    </td>
                     <td>{{ $hw->name }}</td>
                     <td>{{ $hw->slug }}</td>
                     <td>{{ $hw->brand->name }}</td>
