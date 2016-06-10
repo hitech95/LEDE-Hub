@@ -23,7 +23,7 @@ class CreateHardwareTable extends Migration
             $table->text('content');
             $table->timestamps();
 
-            $table->foreign('manufacturer_id')->references('id')->on('brands')->onDelete('set null');
+            $table->foreign('platform_id')->references('id')->on('brands')->onDelete('set null');
         });
     }
 
