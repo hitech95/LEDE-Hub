@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHardwareTable extends Migration
+class CreateSpecsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,12 @@ class CreateHardwareTable extends Migration
      */
     public function up()
     {
-        Schema::create('hardware', function (Blueprint $table) {
+        Schema::create('specs', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('public');
-            $table->integer('platform_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique()->index();
-            $table->integer('brand_id')->unsigned()->nullable();
-            $table->string('description', 250);
-            $table->text('content');
+            $table->string('description');
             $table->timestamps();
-
-            $table->foreign('platform_id')->references('id')->on('brands')->onDelete('set null');
         });
     }
 
@@ -34,6 +28,6 @@ class CreateHardwareTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hardware');
+        Schema::drop('specs');
     }
 }

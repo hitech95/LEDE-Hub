@@ -25,8 +25,24 @@
         <ul class="nav">
             <li><a href="{{ url('/admin/hardware') }}" class="nav-link">Hardware</a></li>
             <li><a href="{{ url('/admin/hardware/create') }}" class="nav-link">New Hardware</a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="fa fa-building"></i>Brand<span class="arrow fa fa-angle-left"></span>
+        </a>
+        <ul class="nav">
             <li><a href="{{ url('/admin/brand/') }}" class="nav-link">Brand</a></li>
             <li><a href="{{ url('/admin/brand/create') }}" class="nav-link">New Brand</a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="fa fa-bar-chart"></i>Specifications<span class="arrow fa fa-angle-left"></span>
+        </a>
+        <ul class="nav">
+            <li><a href="{{ url('/admin/specs/') }}" class="nav-link">Specifications</a></li>
+            <li><a href="{{ url('/admin/specs/create') }}" class="nav-link">New Specifications</a></li>
         </ul>
     </li>
     <li class="nav-item">

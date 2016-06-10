@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('users', 'Admin\UserController');
     Route::resource('hardware', 'Admin\AHardwareController');
+    Route::resource('specs', 'Admin\SpecController');
     Route::resource('tags', 'Admin\TagController');
 });
 
