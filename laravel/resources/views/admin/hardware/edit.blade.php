@@ -75,13 +75,13 @@
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('hidden', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('public', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10 btn-group" data-toggle="buttons">
             <label class="btn btn-success{{ (!$hardware->hidden) ? ' active' : '' }}">
-                {!! Form::radio('hidden', 'false', true) !!} True
+                {!! Form::radio('public', 'false', true) !!} True
             </label>
             <label class="btn btn-danger{{ ($hardware->hidden) ? ' active' : '' }}">
-                {!! Form::radio('hidden', 'true') !!} False
+                {!! Form::radio('public', 'true') !!} False
             </label>
         </div>
     </fieldset>
