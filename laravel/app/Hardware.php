@@ -47,12 +47,36 @@ class Hardware extends Model {
     /**
      * Set the hardware visibility.
      *
-     * @param  string  $value
+     * @param  string $value
+     *
      * @return string
      */
     public function setHiddenAttribute($value)
     {
-        $this->attributes['hidden'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);;
+        $this->attributes['hidden'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    public function getFormValue($key)
+    {
+        $key = str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $key);
+
+        if($key == 'brand'){
+            return $this->getAttribute('brand_id');
+        }
+
+        if($key == 'platform'){
+            return $this->getAttribute('platform_id');
+        }
+
+        if($key == 'tags'){
+            return $this->$key->pluck('id')->toarray();
+        }
+
+        if($key == 'hidden'){
+            return ($this->getAttribute($key)) ? 'true' : 'false';
+        }
+
+        return $this->getAttribute($key);
     }
 
     public function brand()
