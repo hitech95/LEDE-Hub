@@ -1,3 +1,6 @@
 .DS_Store
 .idea
-/Homestead
+bower_components
+node_modules
+npm-debug.log
+./dist
