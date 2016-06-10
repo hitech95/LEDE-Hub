@@ -32,28 +32,10 @@ class AHardwareController extends Controller {
      */
     public function create()
     {
-        $brandsM = Brand::orderBy('name')->get();
-        $tagsM = Tag::orderBy('name')->get();
-        $platformsM = Hardware::platforms()->orderBy('name')->get();
-
-        $brands = array();
-        $tags = array();
-        $platforms = array();
-
-        foreach ($brandsM as $brandM)
-        {
-            $brands[$brandM->id] = $brandM->name;
-        }
-
-        foreach ($tagsM as $tagM)
-        {
-            $tags[$tagM->id] = $tagM->name;
-        }
-
-        foreach ($platformsM as $platformM)
-        {
-            $platforms[$platformM->id] = $platformM->name;
-        }
+        $brands = Brand::orderBy('name')->get()->pluck('id', 'name')->flip();
+        $tags = Tag::orderBy('name')->pluck('id', 'name')->flip();
+        $platforms = Hardware::platforms()->orderBy('name')->get()->pluck('id', 'name')->flip();
+        $platforms->put('-', 'Mark as Platform');
 
         return view('admin.hardware.create', compact('brands', 'tags', 'platforms'));
     }
@@ -71,19 +53,13 @@ class AHardwareController extends Controller {
 
         $brand = Brand::findOrFail($request->brand);
         $tags = Tag::whereIn('id', $request->tags)->get();
-
-        if (!$request->platform === '')
-        {
-            $platform = Hardware::whereIn('id', $request->platform)->get();
-        }
+        $platform = ($request->platform === '' || $request->platform == '-') ?
+            null : Hardware::findOrFail($request->platform);
 
         $hardware = new Hardware($request->all());
-        $hardware->brand()->associate($brand);
 
-        if (isset($platform))
-        {
-            $hardware->platform()->associate($platform);
-        }
+        $hardware->brand()->associate($brand);
+        $hardware->platform()->associate($platform);
 
         $hardware->save();
 
@@ -105,7 +81,7 @@ class AHardwareController extends Controller {
      */
     public function show($id)
     {
-        // Redirect to frontend
+        // TODO - Redirect to frontend
     }
 
     /**
@@ -117,7 +93,14 @@ class AHardwareController extends Controller {
      */
     public function edit($id)
     {
-        //
+        $brands = Brand::orderBy('name')->get()->pluck('id', 'name')->flip();
+        $tags = Tag::orderBy('name')->pluck('id', 'name')->flip();
+        $platforms = Hardware::platforms()->orderBy('name')->where('id', '!=', $id)->get()->pluck('id', 'name')->flip();
+        $platforms->put('-', 'Mark as Platform');
+
+        $hardware = Hardware::findOrFail($id);
+
+        return view('admin.hardware.edit', compact('hardware', 'brands', 'platforms', 'tags'));
     }
 
     /**
@@ -130,7 +113,28 @@ class AHardwareController extends Controller {
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //TODO - Validate the request
+
+        $brand = Brand::findOrFail($request->brand);
+        $tags = Tag::whereIn('id', $request->tags)->get();
+        $platform = ($request->platform === '' || $request->platform == '-') ?
+            null : Hardware::findOrFail($request->platform);
+
+        $hardware = Hardware::findOrFail($id);
+        $hardware->update($request->all());
+
+        $hardware->brand()->associate($brand);
+        $hardware->platform()->associate($platform);
+        $hardware->tags()->sync($tags);
+
+        $hardware->save();
+
+        // Clear the hardware cache
+        Cache::forget('devices_list');
+        Cache::forget('platforms_list');
+
+        return redirect()->action('Admin\AHardwareController@index');
     }
 
     /**
@@ -142,6 +146,9 @@ class AHardwareController extends Controller {
      */
     public function destroy($id)
     {
-        //
+        $hardware = Hardware::findOrFail($id);
+        $hardware->delete();
+
+        return redirect()->action('Admin\AHardwareController@index');
     }
 }
