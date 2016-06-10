@@ -7,6 +7,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -41,6 +42,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //TODO - Validate the input
+
         Tag::create($request->all());
 
         // Clear the tag cache
@@ -81,7 +83,15 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //TODO - Process the update
+        // TODO - Validate the input
+
+        $tag = Tag::findOrFail($id);
+        $tag->update($request->all());
+
+        // Clear the hardware cache
+        Cache::forget('tags_list');
+
+        return redirect()->action('Admin\TagController@index');
     }
 
     /**
