@@ -41,7 +41,7 @@ class Hardware extends Model {
 
     public function scopeVisible($query)
     {
-        $query->where('hidden', false);
+        $query->where('public', false);
     }
 
     /**
@@ -51,9 +51,9 @@ class Hardware extends Model {
      *
      * @return string
      */
-    public function setHiddenAttribute($value)
+    public function setPublicAttribute($value)
     {
-        $this->attributes['hidden'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        $this->attributes['public'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
     }
 
     public function getFormValue($key)
@@ -72,7 +72,7 @@ class Hardware extends Model {
             return $this->$key->pluck('id')->toarray();
         }
 
-        if($key == 'hidden'){
+        if($key == 'ú'){
             return ($this->getAttribute($key)) ? 'true' : 'false';
         }
 
