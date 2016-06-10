@@ -18,12 +18,12 @@
 
     {!! Form::open(['url' => 'admin/tags', 'class' => 'form-inline']) !!}
     <fieldset  class="form-group">
-        {!! Form::label('name', 'Name', ['class'=> 'form-control-label']) !!}
+        {!! Form::label('name', 'Name:', ['class'=> 'form-control-label']) !!}
         {!! Form::text('name', null, ['class' => 'form-control slugify-src', 'placeholder' => 'Name']) !!}
     </fieldset >
 
     <fieldset  class="form-group">
-        {!! Form::label('slug', 'Slug', ['class'=> 'form-control-label']) !!}
+        {!! Form::label('slug', 'Slug:', ['class'=> 'form-control-label']) !!}
         {!! Form::text('slug', null, ['class' => 'form-control slugify', 'placeholder' => 'Slug']) !!}
     </fieldset >
 

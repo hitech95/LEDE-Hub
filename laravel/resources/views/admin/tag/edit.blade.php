@@ -8,6 +8,15 @@
 
     <hr>
 
+    <!-- TODO - Better error handling -->
+    @if($errors->any())
+        <ui class="alert alert-danger">
+            @foreach($errors->all as $error)
+                <li>{!! $error !!}</li>
+            @endforeach
+        </ui>
+    @endif
+
     {!! Form::model($tag, ['method' => 'PATCH', 'action' => ['Admin\TagController@update', $tag->id]]) !!}
     <fieldset class="form-group row">
         {!! Form::label('name', 'Name:', ['class'=> 'col-sm-2 form-control-label']) !!}
