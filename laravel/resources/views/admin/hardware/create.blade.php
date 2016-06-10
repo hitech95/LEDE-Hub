@@ -17,7 +17,8 @@
         </ui>
     @endif
 
-    {!! Form::open(['url' => 'admin/hardware']) !!}
+    {!! Form::open(['action' => 'Admin\AHardwareController@store']) !!}
+
     <fieldset class="form-group row">
         {!! Form::label('name', 'Name:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
@@ -36,16 +37,6 @@
         {!! Form::label('brand', 'Brand:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('brand', $brands, null, ['class' => 'form-control selectized', 'placeholder' => 'Pick a brand...']) !!}
-        </div>
-    </fieldset>
-
-    <fieldset class="form-group row">
-        {!! Form::label('tags[]', 'Tags:', ['class'=> 'col-sm-2 form-control-label']) !!}
-        <div class="col-sm-10">
-            {!! Form::select('tags[]', $tags, null, ['class' => 'form-control selectized', 'multiple' => 'multiple', 'placeholder' => 'Pick some tag...']) !!}
-            <small class="text-muted">
-                Tags are used to search a device in the list, make sure they are accurate!
-            </small>
         </div>
     </fieldset>
 
@@ -75,16 +66,27 @@
     </fieldset>
 
     <fieldset class="form-group row">
+        {!! Form::label('tags[]', 'Tags:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::select('tags[]', $tags, null, ['class' => 'form-control selectized', 'multiple' => 'multiple', 'placeholder' => 'Pick some tag...']) !!}
+            <small class="text-muted">
+                Tags are used to search a device in the list, make sure they are accurate!
+            </small>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group row">
         {!! Form::label('hidden', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10 btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
+            <label class="btn btn-success active">
                 {!! Form::radio('hidden', 'false', true) !!} True
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-danger">
                 {!! Form::radio('hidden', 'true') !!} False
             </label>
         </div>
     </fieldset>
+
     <fieldset class="form-group row">
         <div class="col-sm-offset-2 col-sm-10">
             {!! Form::button('Add', ['class' => 'btn btn-success form-control', 'type' => 'submit']) !!}
