@@ -1,8 +1,0 @@
-/vendor
-/node_modules
-/resources/assets/bower_components
-/public/assets/
-/public/storage
-Homestead.json
-_ide_helper.php
-.env
