@@ -31,15 +31,21 @@
             @foreach($hardware as $hw)
                 <tr>
                     <td>
-                        @if($hw->public)
-                            <span class="text-danger"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                        @else
+                        @if($hw->published)
                             <span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                        @else
+                            <span class="text-danger"><i class="fa fa-circle" aria-hidden="true"></i></span>
                         @endif
                     </td>
                     <td>{{ $hw->name }}</td>
                     <td>{{ $hw->slug }}</td>
-                    <td>{{ $hw->brand->name }}</td>
+                    <td>
+                        @if(is_null($hw->brand))
+                            -
+                        @else
+                            {{ $hw->brand->name }}
+                        @endif
+                    </td>
                     <td>
                         @if(is_null($hw->platform))
                             -

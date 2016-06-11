@@ -18,7 +18,7 @@ class CreateHardwareSpecTable extends Migration
             $table->string('value');
 
             $table->foreign('hardware_id')->references('id')->on('hardware')->onDelete('cascade');
-            $table->foreign('spec_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('spec_id')->references('id')->on('specs')->onDelete('cascade');
         });
     }
 

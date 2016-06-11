@@ -28,6 +28,6 @@ class CreateHardwareTagTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hardware_tags');
+        Schema::drop('hardware_tag');
     }
 }

@@ -51,19 +51,22 @@ class AHardwareController extends Controller {
     {
         //TODO - Validate the request
 
-        $brand = Brand::findOrFail($request->brand);
-        $tags = Tag::whereIn('id', $request->tags)->get();
+        $brand = ($request->brand === '' || $request->brand == '-') ? null :
+            Brand::findOrFail($request->brand);
+
         $platform = ($request->platform === '' || $request->platform == '-') ?
             null : Hardware::findOrFail($request->platform);
+
+        $tags = (is_null($request->tags)) ? null :
+            Tag::whereIn('id', $request->tags)->get();
 
         $hardware = new Hardware($request->all());
 
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
+        $hardware->tags()->attach($tags);
 
         $hardware->save();
-
-        $hardware->tags()->attach($tags);
 
         // Clear the hardware cache
         Cache::forget('devices_list');
@@ -116,10 +119,14 @@ class AHardwareController extends Controller {
 
         //TODO - Validate the request
 
-        $brand = Brand::findOrFail($request->brand);
-        $tags = Tag::whereIn('id', $request->tags)->get();
+        $brand = ($request->brand === '' || $request->brand == '-') ? null :
+            Brand::findOrFail($request->brand);
+
         $platform = ($request->platform === '' || $request->platform == '-') ?
             null : Hardware::findOrFail($request->platform);
+
+        $tags = (is_null($request->tags)) ? null :
+            Tag::whereIn('id', $request->tags)->get();
 
         $hardware = Hardware::findOrFail($id);
         $hardware->update($request->all());

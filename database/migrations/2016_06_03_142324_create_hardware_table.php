@@ -14,7 +14,7 @@ class CreateHardwareTable extends Migration
     {
         Schema::create('hardware', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('public');
+            $table->boolean('published');
             $table->integer('platform_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique()->index();
@@ -23,7 +23,11 @@ class CreateHardwareTable extends Migration
             $table->text('content');
             $table->timestamps();
 
-            $table->foreign('platform_id')->references('id')->on('brands')->onDelete('set null');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+        });
+
+        Schema::table('hardware', function (Blueprint $table) {
+            $table->foreign('platform_id')->references('id')->on('hardware')->onDelete('set null');
         });
     }
 

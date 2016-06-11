@@ -28,6 +28,6 @@ class CreateReleaseTable extends Migration
      */
     public function down()
     {
-        Schema::drop('release');
+        Schema::drop('releases');
     }
 }

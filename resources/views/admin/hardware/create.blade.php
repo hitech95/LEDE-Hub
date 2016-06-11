@@ -76,13 +76,13 @@
     </fieldset>
 
     <fieldset class="form-group row">
-        {!! Form::label('public', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        {!! Form::label('published', 'Visible:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10 btn-group" data-toggle="buttons">
             <label class="btn btn-success active">
-                {!! Form::radio('public', 'false', true) !!} True
+                {!! Form::radio('published', 'true', true) !!} True
             </label>
             <label class="btn btn-danger">
-                {!! Form::radio('public', 'true') !!} False
+                {!! Form::radio('published', 'false') !!} False
             </label>
         </div>
     </fieldset>

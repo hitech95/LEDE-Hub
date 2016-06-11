@@ -19,21 +19,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($records as $device)
+                    @foreach ($records as $hw)
                         <tr>
+                            @if(is_null($hw->brand))
+                                <td>{{ $hw->name }}</td>
+                                <td>-</td>
+                            @else
+                                <td>
+                                    <a href="{{ url('/device/'. $hw->brand->slug .'/' . $hw->slug)}}">{{ $hw->name }}</a>
+                                </td>
+                                <td>
+                                    {{ $hw->brand->name }}
+                                </td>
+                                {{ $hw->brand->name }}
+                            @endif
                             <td>
-                                <a href="{{ url('/device/'. $device->brand->slug .'/' . $device->slug)}}">{{ $device->name }}</a>
-                            </td>
-                            <td>
-                                {{ $device->brand->name }}
-                            </td>
-                            <td>
-                                {{ $device->platform->brand->name }} - <a
-                                        href="{{ url('/platform/'. $device->platform->brand->slug .'/' . $device->platform->slug)}}">{{ $device->platform->name }}</a>
+                                {{ $hw->platform->brand->name }} - <a
+                                        href="{{ url('/platform/'. $hw->platform->brand->slug .'/' . $hw->platform->slug)}}">{{ $hw->platform->name }}</a>
                             </td>
                             <td></td>
                             <td>
-                                @foreach ($device->tags as $tag)
+                                @foreach ($hw->tags as $tag)
                                     <span class="label label-default">{{ $tag->name }}</span>
                                 @endforeach
                             </td>

@@ -18,7 +18,7 @@ class Hardware extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'hidden', 'description', 'content'];
+    protected $fillable = ['name', 'slug', 'published', 'description', 'content'];
 
     /**
      * The attributes that should be cast to native types.
@@ -26,7 +26,7 @@ class Hardware extends Model {
      * @var array
      */
     protected $casts = [
-        'hidden' => 'boolean'
+        'published' => 'boolean'
     ];
 
     public function scopeDevices($query)
@@ -41,7 +41,7 @@ class Hardware extends Model {
 
     public function scopeVisible($query)
     {
-        $query->where('public', false);
+        $query->where('published', true);
     }
 
     /**
@@ -51,9 +51,9 @@ class Hardware extends Model {
      *
      * @return string
      */
-    public function setPublicAttribute($value)
+    public function setPublishedAttribute($value)
     {
-        $this->attributes['public'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        $this->attributes['published'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
     }
 
     public function getFormValue($key)
@@ -72,7 +72,7 @@ class Hardware extends Model {
             return $this->$key->pluck('id')->toarray();
         }
 
-        if($key == 'ú'){
+        if($key == 'published'){
             return ($this->getAttribute($key)) ? 'true' : 'false';
         }
 
@@ -92,6 +92,11 @@ class Hardware extends Model {
     public function tags()
     {
         return $this->belongsToMany('App\Tag');
+    }
+
+    public function specs()
+    {
+        return $this->belongsToMany('App\Spec');
     }
 
     /*

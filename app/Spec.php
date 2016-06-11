@@ -11,7 +11,7 @@ class Spec extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     /**
      * This is used to link the tag to he hardware using DB relations

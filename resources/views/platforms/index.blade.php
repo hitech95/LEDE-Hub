@@ -18,13 +18,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($records as $device)
+                    @foreach ($records as $hw)
                         <tr>
+                            @if(is_null($hw->brand))
+                                <td>{{ $hw->name }}</td>
+                                <td>-</td>
+                            @else
+                                <td>
+                                    <a href="{{ url('/platform/'. $hw->brand->slug .'/' . $hw->slug)}}">{{ $hw->name }}</a>
+                                </td>
+                                <td>
+                                    {{ $hw->brand->name }}
+                                </td>
+                            @endif
+                            <td></td>
                             <td>
-                                <a href="{{url('/platform/'. $device->brand->slug .'/' . $device->slug)}}">{{ $device->name }}</a>
-                            </td>
-                            <td>
-                                {{ $device->brand->name }}
+                                @foreach ($hw->tags as $tag)
+                                    <span class="label label-default">{{ $tag->name }}</span>
+                                @endforeach
                             </td>
                         </tr>
                     @endforeach
