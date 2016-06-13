@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('brands', 'Admin\BrandController');
     Route::resource('specs', 'Admin\SpecController');
+    Route::resource('releases', 'Admin\AReleaseController');
     Route::resource('tags', 'Admin\TagController');
 });
 
@@ -65,7 +66,7 @@ Route::group(['prefix' => 'staff'], function () {
 });*/
 
 //Release
-Route::group(['prefix' => 'release'], function () {
+Route::group(['prefix' => 'releases'], function () {
     Route::get('/', 'ReleaseController@index');
     Route::get('/create', 'ReleaseController@create');
     Route::get('/{version}', 'ReleaseController@show')

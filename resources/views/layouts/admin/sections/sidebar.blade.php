@@ -51,8 +51,8 @@
             <i class="fa fa-paper-plane"></i>Releases<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
-            <li><a href="#" class="nav-link">Releases</a></li>
-            <li><a href="#" class="nav-link">New Release</a></li>
+            <li><a href="{{ url('/admin/releases') }}" class="nav-link">Releases</a></li>
+            <li><a href="{{ url('/admin/releases/create') }}" class="nav-link">New Release</a></li>
         </ul>
     </li>
     <li class="nav-item last">

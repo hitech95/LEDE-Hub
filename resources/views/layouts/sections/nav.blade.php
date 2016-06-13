@@ -8,7 +8,7 @@
             <img src="https://www.lede-project.org/logo/logo_small.png">LEDE Hub</a>
         <ul class="nav navbar-nav pull-right">
             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url('/release') }}">Releases</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/releases') }}">Releases</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Hardware</a>
                 <div class="dropdown-menu">
