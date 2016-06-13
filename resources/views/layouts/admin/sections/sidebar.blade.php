@@ -23,16 +23,17 @@
             <i class="fa fa-gear"></i>Hardware<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
-            <li><a href="{{ url('/admin/hardware') }}" class="nav-link">Hardware</a></li>
+            <li><a href="{{ url('/admin/hardware/devices') }}" class="nav-link">Devices</a></li>
+            <li><a href="{{ url('/admin/hardware/platforms') }}" class="nav-link">Platforms</a></li>
             <li><a href="{{ url('/admin/hardware/create') }}" class="nav-link">New Hardware</a></li>
         </ul>
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link">
-            <i class="fa fa-building"></i>Brand<span class="arrow fa fa-angle-left"></span>
+            <i class="fa fa-building"></i>Brands<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
-            <li><a href="{{ url('/admin/brands/') }}" class="nav-link">Brand</a></li>
+            <li><a href="{{ url('/admin/brands/') }}" class="nav-link">Brands</a></li>
             <li><a href="{{ url('/admin/brands/create') }}" class="nav-link">New Brand</a></li>
         </ul>
     </li>
@@ -56,10 +57,10 @@
     </li>
     <li class="nav-item last">
         <a href="#" class="nav-link">
-            <i class="fa fa-tags"></i>Tag<span class="arrow fa fa-angle-left"></span>
+            <i class="fa fa-tags"></i>Tags<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
-            <li><a href="{{ url('/admin/tags') }}" class="nav-link">Tag</a></li>
+            <li><a href="{{ url('/admin/tags') }}" class="nav-link">Tags</a></li>
             <li><a href="{{ url('/admin/tags/create') }}" class="nav-link">New Tag</a></li>
         </ul>
     </li>

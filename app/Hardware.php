@@ -31,12 +31,12 @@ class Hardware extends Model {
 
     public function scopeDevices($query)
     {
-        $query->whereNotNull('platform_id');
+        $query->whereNotNull('hardware.platform_id');
     }
 
     public function scopePlatforms($query)
     {
-        $query->whereNull('platform_id');
+        $query->whereNull('hardware.platform_id');
     }
 
     public function scopeVisible($query)

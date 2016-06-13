@@ -18,11 +18,32 @@ class AHardwareController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category = 'devices')
     {
-        $hardware = Hardware::orderBy('slug', 'ASC')->with('brand')->with('platform')->with('tags')->get();
+        if ($category == 'devices')
+        {
+            $hardware = Hardware::devices()
+                ->leftJoin('brands', 'hardware.brand_id', '=', 'brands.id')
+                ->orderBy('brands.slug', 'ASC')
+                ->select('hardware.*')
+                ->with('brand')
+                ->with('platform')
+                ->with('tags')
+                ->paginate(100);
+        } else
+        {
+            $hardware = Hardware::platforms()
+                ->leftJoin('brands', 'hardware.brand_id', '=', 'brands.id')
+                ->orderBy('brands.slug', 'ASC')
+                ->orderBy('hardware.slug', 'ASC')
+                ->select('hardware.*')
+                ->with('brand')
+                ->with('platform')
+                ->with('tags')
+                ->paginate(100);
+        }
 
-        return view('admin.hardware.index', compact('hardware'));
+        return view('admin.hardware.index', compact('hardware', 'category'));
     }
 
     /**
@@ -65,7 +86,7 @@ class AHardwareController extends Controller {
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
 
-        if (!is_null())
+        if (!is_null($tags))
         {
             $hardware->tags()->attach($tags);
         }
@@ -138,7 +159,7 @@ class AHardwareController extends Controller {
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
 
-        if (!is_null())
+        if (!is_null($tags))
         {
             $hardware->tags()->sync($tags);
         }

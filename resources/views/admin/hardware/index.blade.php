@@ -3,7 +3,14 @@
 @section('title', 'Hardware')
 
 @section('content')
-    <h1>Hardware</h1>
+    <h1>Hardware:
+        @if($category == 'devices')
+            Devices
+        @else
+            Platforms
+        @endif
+        list
+    </h1>
     <p class="lead">In this page you can add and review hardware that users have modified or that is generated on build
         time</p>
 
@@ -57,7 +64,9 @@
             </tbody>
         </table>
     </div>
-
+    <nav>
+        {!! $hardware->render() !!}
+    </nav>
     <div class="modal fade modal-delete-dialog" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
