@@ -23,8 +23,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', 'Admin\AdminController@stats');
     Route::get('/stats', 'Admin\AdminController@stats');
 
-    Route::resource('users', 'Admin\UserController');
+    //Route::resource('users', 'Admin\UserController');
     Route::resource('hardware', 'Admin\AHardwareController');
+    Route::resource('brands', 'Admin\BrandController');
     Route::resource('specs', 'Admin\SpecController');
     Route::resource('tags', 'Admin\TagController');
 });

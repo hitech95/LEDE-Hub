@@ -32,8 +32,8 @@
             <i class="fa fa-building"></i>Brand<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
-            <li><a href="{{ url('/admin/brand/') }}" class="nav-link">Brand</a></li>
-            <li><a href="{{ url('/admin/brand/create') }}" class="nav-link">New Brand</a></li>
+            <li><a href="{{ url('/admin/brands/') }}" class="nav-link">Brand</a></li>
+            <li><a href="{{ url('/admin/brands/create') }}" class="nav-link">New Brand</a></li>
         </ul>
     </li>
     <li class="nav-item">

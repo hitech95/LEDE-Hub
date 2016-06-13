@@ -64,7 +64,7 @@ class AHardwareController extends Controller {
 
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
-        
+
         if (!is_null())
         {
             $hardware->tags()->attach($tags);
