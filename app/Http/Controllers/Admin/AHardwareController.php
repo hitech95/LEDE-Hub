@@ -64,7 +64,11 @@ class AHardwareController extends Controller {
 
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
-        $hardware->tags()->attach($tags);
+        
+        if (!is_null())
+        {
+            $hardware->tags()->attach($tags);
+        }
 
         $hardware->save();
 
@@ -133,7 +137,11 @@ class AHardwareController extends Controller {
 
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
-        $hardware->tags()->sync($tags);
+
+        if (!is_null())
+        {
+            $hardware->tags()->sync($tags);
+        }
 
         $hardware->save();
 
