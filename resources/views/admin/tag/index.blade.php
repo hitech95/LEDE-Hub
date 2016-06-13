@@ -49,8 +49,6 @@
                     <td>{{ $tag->name }}</td>
                     <td>{{ $tag->slug }}</td>
                     <td>
-
-
                         {!! Form::open(['url' => 'admin/tags/' . $tag->id, 'method' => 'DELETE', 'class' => 'form-inline form-delete']) !!}
                         <a href="{{ url('/admin/tags/' . $tag->id . '/edit') }}" class="btn btn-warning">Edit</a>
                         {!! Form::submit('Remove', ['class' => 'btn btn-danger form-control']) !!}
