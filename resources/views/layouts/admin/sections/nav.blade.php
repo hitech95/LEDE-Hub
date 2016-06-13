@@ -16,6 +16,7 @@
                     <a class="dropdown-item" href="{{ url('/platform') }}">Platforms</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/report">Reports</a>
+                    <a class="dropdown-item" href="https://bugs.lede-project.org/">Bugs</a>
                 </div>
             </li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/staff') }}">Staff</a></li>
