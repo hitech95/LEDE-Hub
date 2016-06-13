@@ -2,9 +2,10 @@
 ip: "192.168.10.10"
 memory: 2048
 cpus: 1
+provider: virtualbox
 hostname: laravel
 name: laravel
-provider: virtualbox
+
 
 authorize: ~/.ssh/id_rsa.pub
 
@@ -12,11 +13,11 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: "/media/vagrant/lede/laravel"
+    - map: "/media/laravel/project"
       to: "/home/vagrant/laravel"
 
 sites:
-    - map: homestead.app
+    - map: lede.app
       to: "/home/vagrant/laravel/public"
 
 databases:
