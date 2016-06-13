@@ -39,20 +39,8 @@
                     </td>
                     <td>{{ $hw->name }}</td>
                     <td>{{ $hw->slug }}</td>
-                    <td>
-                        @if(is_null($hw->brand))
-                            -
-                        @else
-                            {{ $hw->brand->name }}
-                        @endif
-                    </td>
-                    <td>
-                        @if(is_null($hw->platform))
-                            -
-                        @else
-                            {{ $hw->platform->name }}
-                        @endif
-                    </td>
+                    <td>@if(is_null($hw->brand))-@else{{ $hw->brand->name }}@endif</td>
+                    <td>@if(is_null($hw->platform))-@else{{ $hw->platform->name }}@endif</td>
                     <td>
                         @foreach ($hw->tags as $tag)
                             <span class="label label-default">{{ $tag->name }}</span>
