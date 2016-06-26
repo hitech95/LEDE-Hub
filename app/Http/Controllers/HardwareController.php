@@ -75,7 +75,9 @@ class HardwareController extends Controller {
         $brand = Brand::where('slug', '=', $manufacturerSlug)->firstOrFail();
         $hardware = Hardware::where('hardware.slug', '=', $deviceSlug)
             ->where('brand_id', '=', $brand->id)
+            ->visible()
             ->with('tags')
+            ->with('specs')
             ->firstOrFail();
 
         //TODO - Make the view and query the data

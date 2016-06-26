@@ -33,10 +33,12 @@
     <h1 class="display-3 hidden-xs-down">
         {{ $brand->name }} {{ $hardware->name }}
     </h1>
-    <p class="lead">
-        @foreach( $hardware->tags as $tag )
+    <p class="lead"><i class="fa fa-tag"></i>
+        @forelse( $hardware->tags as $tag )
             <span class="label label-default">{{ $tag->name }}</span>
-        @endforeach
+        @empty
+            <span class="text-info">No tags.</span>
+        @endforelse
     </p>
 
     <a id="overview"></a>
@@ -47,30 +49,32 @@
 
     <hr>
     <div class="row">
-        <div class="col-lg-3 col-md-4">
-
+        <div class="col-lg-4 col-md-5">
             <div class="card card-inverse bg-inverse" style="border-color: #333;">
                 <div class="card-block">
-                    <h3 class="card-title">Hardware Highlights
+                    <h3 class="card-title"><i class="fa fa-gears"></i> Hardware Highlights
+                        <!-- TODO - Load the color from DB using compatibility -->
                         <span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
                     </h3>
                     <p class="card-text">
                     </p>
                     <ul>
-                        <li><span class="font-weight-bold">CPU:</span>Lantiq XWAY ARX168@333MHz</li>
-                        <li><span class="font-weight-bold">RAM:</span>64MiB</li>
-                        <li><span class="font-weight-bold">ROM:</span>16MiB</li>
-                        <li><span class="font-weight-bold">Switch:</span>Realtek 4 x 1GBE</li>
-                        <li><span class="font-weight-bold">USB:</span>1 x 2.0 HOST</li>
-                        <li><span class="font-weight-bold">ADSL:</span>YES</li>
+                        @forelse($hardware->specs as $spec)
+                        @if(strpos($spec->slug, 'url') !== false)
+                        <li><span class="font-weight-bold">{{ $spec->name }}:</span> <a href="{{ $spec->pivot->value }}">Link</a></li>                                </li>
+                        @else
+                        <li><span class="font-weight-bold">{{ $spec->name }}:</span> {{ $spec->pivot->value }}</li>
+                        @endif
+                        @empty
+                        <li>No specs for this device :(</li>
+                        @endforelse
                     </ul>
-                    <p class="text-danger">FAKE DATA!!! NOT DB RELATED</p>
-                    <a href="#" class="btn btn-secondary-outline">More details</a>
+                    <a href="#hardware" class="btn btn-secondary-outline">More details</a>
                 </div>
             </div>
 
         </div>
-        <div class="col-lg-9 col-md-8">
+        <div class="col-lg-8 col-md-7">
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
@@ -105,17 +109,10 @@
                                 <td>DGN3500</td>
                                 <td>2012-11</td>
                                 <td>15.05</td>
-                                <td><span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <td><span class="text-success"><i class="fa fa-circle"
+                                                                  aria-hidden="true"></i></span>
                                 </td>
                                 <td>ADSL works, new SPI driver make the device faster</td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500B</td>
-                                <td>2012-11</td>
-                                <td>15.05</td>
-                                <td><span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>ADSL don't works</td>
                             </tr>
                             </tbody>
                         </table>
@@ -140,36 +137,10 @@
                                 <td>r500</td>
                                 <td>2012-11</td>
                                 <td>5.00</td>
-                                <td><span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <td><span class="text-warning"><i class="fa fa-circle"
+                                                                  aria-hidden="true"></i></span>
                                 </td>
                                 <td>USB not working</td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500</td>
-                                <td>r1850</td>
-                                <td>2013-03</td>
-                                <td>9.05</td>
-                                <td><span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500B</td>
-                                <td>r540</td>
-                                <td>2012-11</td>
-                                <td>5.00</td>
-                                <td><span class="text-danger"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>USB not working, ADSL not working</td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500B</td>
-                                <td>r1940</td>
-                                <td>2013-03</td>
-                                <td>9.05</td>
-                                <td><span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>ADSL don't works</td>
                             </tr>
                             </tbody>
                         </table>
@@ -192,37 +163,10 @@
                                 <td>DGN3500</td>
                                 <td>2012-11</td>
                                 <td>15.05</td>
-                                <td><span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <td><span class="text-success"><i class="fa fa-circle"
+                                                                  aria-hidden="true"></i></span>
                                 </td>
                                 <td>ADSL not initialize</td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500/B</td>
-                                <td>2012-11</td>
-                                <td>15.05</td>
-                                <td><span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>USB not initialize</td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500/B</td>
-                                <td>2012-11</td>
-                                <td>15.05</td>
-                                <td><span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>Missing mapping of some leds (I have found it, must add to DTS on
-                                    mainstream, that is <a
-                                            href="https://github.com/hitech95/OpenWrt-Enviroment/blob/master/profiles/dgn3500/trunk-openwrt.patch#L39">real</a>
-                                    ... by hitech95)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>DGN3500B</td>
-                                <td>2012-11</td>
-                                <td>15.05</td>
-                                <td><span class="text-danger"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                </td>
-                                <td>ADSL don't works</td>
                             </tr>
                             </tbody>
                         </table>
