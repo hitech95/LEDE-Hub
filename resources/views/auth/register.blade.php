@@ -12,7 +12,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group row{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Nickname</label>
+                                <label for="name" class="col-md-4 form-control-label">Nickname</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="form-group row{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                <label for="email" class="col-md-4 form-control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-group row{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="col-md-4 form-control-label">Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group row{{ $errors->has('password_confirmation') ? ' has-danger' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                <label for="password-confirm" class="col-md-4 form-control-label">Confirm Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password"

@@ -14,7 +14,7 @@ class Tag extends Model {
     protected $fillable = ['name', 'slug'];
 
     /**
-     * This is used to link the tag to he hardware using DB relations
+     * This is used to link the tag to the Hardware using DB relations
      */
     public function hardware()
     {
