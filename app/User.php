@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * This is used to link the User to the Permission using DB relations
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Permission');
+    }
 }

@@ -22,13 +22,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'Admin\AdminController@index');
     Route::get('/dashboard', 'Admin\AdminController@stats');
     Route::get('/stats', 'Admin\AdminController@stats');
-
-    //Route::resource('users', 'Admin\UserController');
-
+    Route::resource('users', 'Admin\AUserController');
+    Route::get('/permissions', 'Admin\AUserController@permissions');
     Route::get('hardware/{category}', 'Admin\AHardwareController@index')
         ->where('category', '(devices|platforms)');
     Route::resource('hardware', 'Admin\AHardwareController');
-
     Route::resource('brands', 'Admin\BrandController');
     Route::resource('specs', 'Admin\SpecController');
     Route::resource('releases', 'Admin\AReleaseController');
