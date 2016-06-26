@@ -15,7 +15,6 @@
         time</p>
 
     <hr>
-    <!-- TODO - Better error handling -->
 
     <p>Add a new hardware: <a href="{{ url('admin/hardware/create') }}" class="btn btn-success">Add</a></p>
 

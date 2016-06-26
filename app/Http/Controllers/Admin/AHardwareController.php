@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Brand;
 use App\Hardware;
 use App\Http\Controllers\Controller;
+use App\Spec;
 use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Cache;
 
-class AHardwareController extends Controller {
+class AHardwareController extends Controller
+{
 
     /**
      * Display a listing of the resource.
@@ -20,18 +22,17 @@ class AHardwareController extends Controller {
      */
     public function index($category = 'devices')
     {
-        if ($category == 'devices')
-        {
+        if ($category == 'devices') {
             $hardware = Hardware::devices()
                 ->leftJoin('brands', 'hardware.brand_id', '=', 'brands.id')
                 ->orderBy('brands.slug', 'ASC')
+                ->orderBy('hardware.slug', 'ASC')
                 ->select('hardware.*')
                 ->with('brand')
                 ->with('platform')
                 ->with('tags')
                 ->paginate(100);
-        } else
-        {
+        } else {
             $hardware = Hardware::platforms()
                 ->leftJoin('brands', 'hardware.brand_id', '=', 'brands.id')
                 ->orderBy('brands.slug', 'ASC')
@@ -55,10 +56,11 @@ class AHardwareController extends Controller {
     {
         $brands = Brand::orderBy('name')->get()->pluck('id', 'name')->flip();
         $tags = Tag::orderBy('name')->pluck('id', 'name')->flip();
+        $specs = Spec::orderBy('name')->get();
         $platforms = Hardware::platforms()->orderBy('name')->get()->pluck('id', 'name')->flip();
         $platforms->put('-', 'Mark as Platform');
 
-        return view('admin.hardware.create', compact('brands', 'tags', 'platforms'));
+        return view('admin.hardware.create', compact('brands', 'tags', 'platforms', 'specs'));
     }
 
     /**
@@ -86,10 +88,17 @@ class AHardwareController extends Controller {
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
 
-        if (!is_null($tags))
-        {
+        if (!is_null($tags)) {
             $hardware->tags()->attach($tags);
         }
+
+        $specs = $request->input('specs');
+
+        $specs = array_filter($specs, function ($var) {
+            return $var['value'] != '';
+        });
+
+        $hardware->specs()->sync($specs);
 
         $hardware->save();
 
@@ -109,7 +118,13 @@ class AHardwareController extends Controller {
      */
     public function show($id)
     {
-        // TODO - Redirect to frontend
+        $hardware = Hardware::findOrFail($id);
+
+        if (is_null($hardware->platform_id)) {
+            return redirect('home/platform/' . $hardware->brand->slug .  '/' . $hardware->slug);
+        } else {
+            return redirect('home/device/' . $hardware->brand->slug .  '/' . $hardware->slug);
+        }
     }
 
     /**
@@ -123,12 +138,13 @@ class AHardwareController extends Controller {
     {
         $brands = Brand::orderBy('name')->get()->pluck('id', 'name')->flip();
         $tags = Tag::orderBy('name')->pluck('id', 'name')->flip();
+        $specs = Spec::orderBy('name')->get();
         $platforms = Hardware::platforms()->orderBy('name')->where('id', '!=', $id)->get()->pluck('id', 'name')->flip();
         $platforms->put('-', 'Mark as Platform');
 
         $hardware = Hardware::findOrFail($id);
 
-        return view('admin.hardware.edit', compact('hardware', 'brands', 'platforms', 'tags'));
+        return view('admin.hardware.edit', compact('hardware', 'brands', 'platforms', 'tags', 'specs'));
     }
 
     /**
@@ -159,10 +175,17 @@ class AHardwareController extends Controller {
         $hardware->brand()->associate($brand);
         $hardware->platform()->associate($platform);
 
-        if (!is_null($tags))
-        {
+        if (!is_null($tags)) {
             $hardware->tags()->sync($tags);
         }
+
+        $specs = $request->input('specs');
+
+        $specs = array_filter($specs, function ($var) {
+            return $var['value'] != '';
+        });
+
+        $hardware->specs()->sync($specs);
 
         $hardware->save();
 
@@ -170,7 +193,9 @@ class AHardwareController extends Controller {
         Cache::forget('devices_list');
         Cache::forget('platforms_list');
 
-        return redirect()->action('Admin\AHardwareController@index');
+        $section = (is_null($hardware->platform_id)) ? 'platforms' : 'devices';
+
+        return redirect()->action('Admin\AHardwareController@index', [$section]);
     }
 
     /**
@@ -183,8 +208,9 @@ class AHardwareController extends Controller {
     public function destroy($id)
     {
         $hardware = Hardware::findOrFail($id);
+        $section = (is_null($hardware->platform_id)) ? 'platforms' : 'devices';
         $hardware->delete();
 
-        return redirect()->action('Admin\AHardwareController@index');
+        return redirect()->action('Admin\AHardwareController@index', [$section]);
     }
 }

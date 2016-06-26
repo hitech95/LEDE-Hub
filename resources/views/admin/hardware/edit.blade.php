@@ -65,6 +65,30 @@
     </fieldset>
 
     <fieldset class="form-group row">
+        {!! Form::label('specs', 'Specifications:', ['class'=> 'col-sm-2 form-control-label']) !!}
+        <div class="col-sm-10 btn-group" data-toggle="buttons">
+            <table id="specs" class="table table-striped table-hover">
+                <thead class="table-inverse">
+                <tr>
+                    <td class="col-md-3 pull-md-none">Spec</td>
+                    <td class="col-md-4 pull-md-none">Value</td>
+                    <td class="col-md-5 pull-md-none">Description</td>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($specs as $spec)
+                    <tr>
+                        <td>{!! Form::label('specs[' . $spec->id . '][value]', $spec->name . ':', ['class'=> 'form-control-label']) !!}</td>
+                        <td>{!! Form::text('specs[' . $spec->id . '][value]', null, ['class' => 'form-control', 'placeholder' => $spec->name]) !!}</td>
+                        <td>{{ $spec->description }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group row">
         {!! Form::label('tags[]', 'Tags:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
             {!! Form::select('tags[]', $tags, null, ['class' => 'form-control selectized', 'multiple' => 'multiple', 'placeholder' => 'Pick some tag...']) !!}

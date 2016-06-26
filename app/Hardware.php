@@ -68,6 +68,16 @@ class Hardware extends Model {
             return $this->getAttribute('platform_id');
         }
 
+        if(strpos($key, 'specs') !== false){
+            $spec = $this->specs()->where('id', explode(".", $key)[1])->first();
+
+            if(is_null($spec)){
+                return null;
+            }
+
+            return $spec->pivot->value;
+        }
+
         if($key == 'tags'){
             return $this->$key->pluck('id')->toarray();
         }
@@ -96,7 +106,7 @@ class Hardware extends Model {
 
     public function specs()
     {
-        return $this->belongsToMany('App\Spec');
+        return $this->belongsToMany('App\Spec')->withPivot('value');
     }
 
     /*
