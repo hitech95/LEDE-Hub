@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\Staff;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Cache;
 
 class AStaffController extends Controller
 {
@@ -29,7 +31,9 @@ class AStaffController extends Controller
      */
     public function create()
     {
-        return view('admin.staff.create');
+        $roles = Role::orderBy('name')->pluck('id', 'name')->flip();
+
+        return view('admin.staff.create', compact('roles'));
     }
 
     /**
@@ -40,7 +44,21 @@ class AStaffController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO - Store the staff to the DB
+        //TODO - Validate the input
+        $roles = (is_null($request->roles)) ? null :
+            Role::whereIn('id', $request->roles)->get();
+        $staff = Staff::create($request->all());
+
+        if (!is_null($roles)) {
+            $staff->roles()->sync($roles);
+        }
+
+        $staff->save();
+
+        // Clear the staff cache
+        Cache::forget('staff_list');
+
+        return redirect()->action('Admin\AStaffController@index');
     }
 
     /**
@@ -51,7 +69,7 @@ class AStaffController extends Controller
      */
     public function show($id)
     {
-        //TODO - redirect to the frontend
+        return redirect()->action('StaffController@index');
     }
 
     /**
@@ -63,8 +81,9 @@ class AStaffController extends Controller
     public function edit($id)
     {
         $staff = Staff::findOrFail($id);
+        $roles = Role::orderBy('name')->pluck('id', 'name')->flip();
 
-        return view('admin.staff.edit', compact('staff'));
+        return view('admin.staff.edit', compact('staff', 'roles'));
     }
 
     /**
@@ -76,7 +95,22 @@ class AStaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //TODO
+        // TODO - Validate the input
+
+        $roles = (is_null($request->roles)) ? null :
+            Role::whereIn('id', $request->roles)->get();
+
+        $staff = Staff::findOrFail($id);
+        $staff->update($request->all());
+
+        if (!is_null($roles)) {
+            $staff->roles()->sync($roles);
+        }
+
+        // Clear the role cache
+        Cache::forget('staff_list');
+
+        return redirect()->action('Admin\AStaffController@index');
     }
 
     /**

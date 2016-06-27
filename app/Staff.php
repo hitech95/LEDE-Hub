@@ -16,6 +16,17 @@ class Staff extends Model
         'full_name', 'nickname'
     ];
 
+    public function getFormValue($key)
+    {
+        $key = str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $key);
+
+        if($key == 'roles'){
+            return $this->$key->pluck('id')->toarray();
+        }
+
+        return $this->getAttribute($key);
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Role', 'staff_role');
