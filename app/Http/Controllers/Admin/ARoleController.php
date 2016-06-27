@@ -45,7 +45,7 @@ class ARoleController extends Controller
 
         Role::create($request->all());
 
-        // Clear the tag cache
+        // Clear the role cache
         Cache::forget('roles_list');
 
         return redirect()->action('Admin\ARoleController@index');
