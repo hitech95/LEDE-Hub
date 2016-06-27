@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/stats', 'Admin\AdminController@stats');
     Route::resource('users', 'Admin\AUserController');
     Route::get('/permissions', 'Admin\AUserController@permissions');
+    Route::resource('staff', 'Admin\AStaffController');
+    Route::resource('roles', 'Admin\ARoleController');
     Route::get('hardware/{category}', 'Admin\AHardwareController@index')
         ->where('category', '(devices|platforms)');
     Route::resource('hardware', 'Admin\AHardwareController');
