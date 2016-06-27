@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Edit: {{ $tag->name }}</h1>
-    <p class="lead">Edit the selected tag!</p>
+    <p class="lead">Edit the selected user!</p>
 
     <hr>
 
