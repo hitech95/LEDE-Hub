@@ -20,6 +20,16 @@
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link">
+            <i class="fa fa-group"></i>Staff<span class="arrow fa fa-angle-left"></span>
+        </a>
+        <ul class="nav">
+            <li><a href="{{ url('/admin/staff') }}" class="nav-link">Staff</a></li>
+            <li><a href="{{ url('/admin/staff/create') }}" class="nav-link">New Staff</a></li>
+            <li><a href="{{ url('/admin/roles') }}" class="nav-link">Roles</a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
             <i class="fa fa-gear"></i>Hardware<span class="arrow fa fa-angle-left"></span>
         </a>
         <ul class="nav">
@@ -29,39 +39,23 @@
         </ul>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ url('/admin/brands/') }}" class="nav-link">
             <i class="fa fa-building"></i>Brands<span class="arrow fa fa-angle-left"></span>
         </a>
-        <ul class="nav">
-            <li><a href="{{ url('/admin/brands/') }}" class="nav-link">Brands</a></li>
-            <li><a href="{{ url('/admin/brands/create') }}" class="nav-link">New Brand</a></li>
-        </ul>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ url('/admin/specs/') }}" class="nav-link">
             <i class="fa fa-bar-chart"></i>Specifications<span class="arrow fa fa-angle-left"></span>
         </a>
-        <ul class="nav">
-            <li><a href="{{ url('/admin/specs/') }}" class="nav-link">Specifications</a></li>
-            <li><a href="{{ url('/admin/specs/create') }}" class="nav-link">New Specifications</a></li>
-        </ul>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ url('/admin/releases') }}" class="nav-link">
             <i class="fa fa-paper-plane"></i>Releases<span class="arrow fa fa-angle-left"></span>
         </a>
-        <ul class="nav">
-            <li><a href="{{ url('/admin/releases') }}" class="nav-link">Releases</a></li>
-            <li><a href="{{ url('/admin/releases/create') }}" class="nav-link">New Release</a></li>
-        </ul>
     </li>
     <li class="nav-item last">
-        <a href="#" class="nav-link">
+        <a href="{{ url('/admin/tags') }}" class="nav-link">
             <i class="fa fa-tags"></i>Tags<span class="arrow fa fa-angle-left"></span>
         </a>
-        <ul class="nav">
-            <li><a href="{{ url('/admin/tags') }}" class="nav-link">Tags</a></li>
-            <li><a href="{{ url('/admin/tags/create') }}" class="nav-link">New Tag</a></li>
-        </ul>
     </li>
 </ul>
