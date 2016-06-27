@@ -17,7 +17,7 @@
         </ui>
     @endif
 
-    {!! Form::model($release, ['method' => 'PATCH', 'action' => ['Admin\TagController@update', $release->id]]) !!}
+    {!! Form::model($release, ['method' => 'PATCH', 'action' => ['Admin\AReleaseController@update', $release->id]]) !!}
     <fieldset class="form-group row">
         {!! Form::label('name', 'Code name:', ['class'=> 'col-sm-2 form-control-label']) !!}
         <div class="col-sm-10">
