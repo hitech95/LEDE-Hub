@@ -88,7 +88,7 @@ class SpecController extends Controller
         $spec = Spec::findOrFail($id);
         $spec->update($request->all());
 
-        // Clear the hardware cache
+        // Clear the specs cache
         Cache::forget('specs_list');
 
         return redirect()->action('Admin\SpecController@index');
