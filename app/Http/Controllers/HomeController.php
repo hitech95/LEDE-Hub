@@ -28,7 +28,7 @@ class HomeController extends Controller
             Log::info('Cache:: Rebuild supported_count cache');
         }
 
-        if (!Cache::has('hardware_count') && Cache::add('hardware_count', Hardware::where('hidden', '=', false)->count(), $expire)) {
+        if (!Cache::has('hardware_count') && Cache::add('hardware_count', Hardware::visible()->count(), $expire)) {
             Log::info('Cache:: Rebuild hardware_count cache');
         }
 
