@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Edit: {{ $release->name }}</h1>
-    <p class="lead">Edit the selected revision!</p>
+    <p class="lead">Edit the selected release!</p>
 
     <hr>
 
