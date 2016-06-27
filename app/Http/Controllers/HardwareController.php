@@ -80,8 +80,6 @@ class HardwareController extends Controller {
             ->with('specs')
             ->firstOrFail();
 
-        //TODO - Make the view and query the data
-
         if (isset($hardware->platform_id))
         {
             return view('devices.detail', compact('hardware', 'brand'));
